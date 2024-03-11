@@ -18,16 +18,64 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.flex-center{
+  @apply flex items-center justify-between
+}
+.header_flex{
+  @apply hidden md:flex items-center justify-between 
+}
+.flexd-center{
+  @apply flex items-center justify-between gap-3
+}
+.w50{ @apply w-3/5}
+.w40{ @apply w-2/5}
+.flexd{ @apply flex }
+.flex-left{
+  @apply flex items-center justify-start
+}
+.p1{
+  @apply py-4 px-8
+}
+.m4{
+  @apply ml-4
+}
+.hvh{
+  @apply h-screen
+}
+.backwhite{
+  @apply bg-white text-gray-500  shadow-md border-slate-400
+}
+.m12{ @apply ml-12}
+.blog_card{
+  @apply bg-white rounded-xl overflow-y-hidden flex flex-col transition-all duration-1000 shadow-xl hover:shadow-2xl hover:scale-110 cursor-pointer
+}
+.spin-class{
+  @apply flex w-full h-full items-center justify-center
+}
+.active-link{
+  @apply border-b-purple-300 border-b-2
+}
+.link{
+  @apply text-sm font-medium transition-all duration-500 hover:text-slate-400 pb-2 hover:scale-105
+}
+.tablet::-webkit-scrollbar{
+  display: none;
+}
+.slick-list, .slick-track, .ant-carousel{
+  height: 100%;
 }
