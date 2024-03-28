@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import blogReducer from '@/redux/reducer/blogReducer';
 import productReducer from '@/redux/reducer/productReducer';
+import userReducer from '@/redux/reducer/userReducer';
 
 
 export const makeStore = () => {
     return configureStore({
       reducer: {
         blog: blogReducer,
-        product: productReducer
+        product: productReducer,
+        user: userReducer
       }
     })
 }

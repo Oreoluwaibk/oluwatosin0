@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     LogoNoBackground, 
     Avatar, 
@@ -8,14 +8,27 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { List } from '@/assets/logo';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { AppDispatch } from '@/lib/store';
+import { useRouter } from 'next/router';
 
 const Headers = ({ active }: any) => {
+    const dispatch: AppDispatch = useAppDispatch();
+    const router = useRouter();
+    const { isAuthenticated, user } = useAppSelector(state => state.user)
+
     const [ showMenu, setShowMenu ] = useState(false);
 
     const handleMenu = () => {
         setShowMenu(!showMenu);
     }
     
+    const handleProfileRedirect = () => {
+        if(!isAuthenticated) router.push("/auth/login");
+
+        router.push("/profile");
+    }
+
   return (
     <div className="p1 backwhite static w-full z-10" style={{height: `${showMenu ? "fit-content" : "56px"}`}}>
         <div className="headerclass header_flex">
@@ -59,15 +72,21 @@ const Headers = ({ active }: any) => {
                             Contacts
                         </Link>
                     </li>
-                    <li className="m12">
-                        <Link href="/profile">
-                            <Image 
-                                src={Avatar} 
-                                alt="profile icon" 
-                                width={20} 
-                                height={20}
-                            />
+                    {user && user.user_type === "admin" && <li className="ml-0" >
+                        <Link href="/contact" className={`flex items-center gap-2 link ${active === "dashboard" && "active-link"}`}>
+                            <i className="bi bi-person-lines-fill"></i>
+                            Dashboard
                         </Link>
+                    </li>}
+                    <li className="ml-6" >
+                        <Image 
+                            src={Avatar} 
+                            alt="profile icon" 
+                            width={20} 
+                            height={20}
+                            onClick={handleProfileRedirect}
+                            className="cursor-pointer"
+                        />
                     </li>
                     <li className="m4">
                         <Link href="/cart">
@@ -121,7 +140,12 @@ const Headers = ({ active }: any) => {
                         Contacts
                     </Link>
                 </li>
-                
+                {user && user.user_type === "admin" && <li className="m4">
+                        <Link href="/contact" className={`flex items-center gap-2 link ${active === "dashboard" && "active-link"}`}>
+                            <i className="bi bi-person-lines-fill"></i>
+                            Dashboard
+                        </Link>
+                    </li>}
                 <li>
                     <Link className="flex items-center gap-2 link" href="/products"><i className="bi bi-bookmarks"></i>Categories</Link>
                 </li>
@@ -130,15 +154,14 @@ const Headers = ({ active }: any) => {
                 </li>
                 <div className="icons flex items-center justify-start gap-8">
                     <li>
-                        <Link href="/profile">
-                            
-                            <Image 
-                                src={Avatar} 
-                                alt="profile icon" 
-                                width={20} 
-                                height={20}
-                            />
-                        </Link>
+                        <Image 
+                            src={Avatar} 
+                            alt="profile icon" 
+                            width={20} 
+                            height={20}
+                            onClick={handleProfileRedirect}
+                            className="cursor-pointer"
+                        />
                     </li>
                     <li>
                         <Link href="/cart">
