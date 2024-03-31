@@ -212,7 +212,7 @@ const Register = () => {
 
           <div className="flex items-center justify-between text-black">
             <Link 
-              href="/auth/forgotpassword" 
+              href={`/auth/forgotpassword`}
               className="text-left transition-opacity duration-[1s] hover:opacity-50 text-code-p"
             >
               Forgot password
@@ -220,7 +220,7 @@ const Register = () => {
 
             <p className="text-right">Already registered? 
               <Link 
-                href={"/auth/login"}
+                href={`/auth/login`}
                 className="transition-opacity duration-[1s] hover:opacity-50 text-code-p"
               >
                 Login
