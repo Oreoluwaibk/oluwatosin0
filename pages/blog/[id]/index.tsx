@@ -1,9 +1,9 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Oneblog from '@/components/blog/oneblog';
+import { useRouter } from 'next/router';
 
 const index = () => {
-    const router = useRouter();
+  const router = useRouter();
     
   return (
     <Oneblog id={router.query.id} />

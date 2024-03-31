@@ -27,7 +27,6 @@ const Login = () => {
   useEffect(() => {
     if(error) {
       const code = error.split("code ")[1];
-      console.log("co", code);
       
       if(Number(code) === 404) {message.error("User doest not exist, kindly login!")}
       if(Number(code) === 401) {message.error("Password is incorrect, please try again!")}

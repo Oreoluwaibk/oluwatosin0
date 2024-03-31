@@ -88,12 +88,12 @@ const userSlice = createSlice({
             state.oneUser = payload.user;
             return state;
         }),
-        builder.addCase(register.rejected, (state, { payload }) => {
+        builder.addCase(register.rejected, (state, { error }) => {
             state.loading = false;
             state.isAuthenticated = false;
             state.success = false;
             state.user = null;
-            state.error = payload;
+            state.error = error.message;
             return state;
         }),
         builder.addCase(login.rejected, (state, { error }) => {
@@ -104,17 +104,17 @@ const userSlice = createSlice({
             state.error = error.message;
             return state;
         }),
-        builder.addCase(getAllUsers.rejected, (state, { payload }) => {
+        builder.addCase(getAllUsers.rejected, (state, { error }) => {
             state.loading = false;
             state.allUser = [];
-            state.error = payload;
+            state.error = error.message;
             state.success = false;
             return state;
         }),
-        builder.addCase(getUser.rejected, (state, { payload }) => {
+        builder.addCase(getUser.rejected, (state, { error }) => {
             state.loading = false;
             state.oneUser = {};
-            state.error = payload;
+            state.error = error.message;
             state.success = false;
             return state;
         })

@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Headers from '@/reusables/headers';
-import { Form, Input, Button, DatePicker, Select } from 'antd';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { AppDispatch } from '@/lib/store';
+import { Form, Input, Button, DatePicker, Select, message } from 'antd';
 import Link from 'next/link';
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import moment from 'moment';
+import { register } from '@/redux/action/authaction';
+import { useRouter } from 'next/router';
+
 
 const FormItem = Form.Item;
 const { Password } = Input;
@@ -21,18 +27,38 @@ type RegisterPayload = {
   date_of_birth: Date;
   postal_code: string;
   sex: string;
-  picture: string;
+  // picture: string;
 }
 
 
 const Register = () => {
+  const dispatch: AppDispatch = useAppDispatch();
+  const router = useRouter();
+  const { isAuthenticated, error, loading } = useAppSelector(state => state.user);
   const [ state, setState ] = useState("");
   const [ country, setCountry ] = useState("");
   const [ sex, setSex ] = useState("");
+  
 
   const handleRegister = (values: RegisterPayload) => {
 
+    const date_of_birth = moment(values.date_of_birth).format("YYYY-MM-DD")
+    const payload = {...values, date_of_birth}
+    
+    dispatch(register(payload));
   }  
+
+  useEffect(() => {
+    if(isAuthenticated) router.push("/profile");
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if(error) {
+      const code = error.split("code ")[1];
+
+      if(Number(code) === 403) {message.error("user already exist, kindly login to continue!")};
+    }
+  }, [error])
 
   return (
     <div className="h-screen overflow-y-scroll" style={{ background: `#fff center center/cover no-repeat`}}>
@@ -176,6 +202,7 @@ const Register = () => {
                 type="primary" 
                 htmlType="submit" 
                 className="w-full bg-code-p transition-opacity duration-700 hover:opacity-70"
+                loading={loading}
               >
                 Submit
               </Button>

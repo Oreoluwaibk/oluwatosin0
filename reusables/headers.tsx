@@ -66,15 +66,15 @@ const Headers = ({ active }: any) => {
                             About
                         </Link>
                     </li>
-                    <li className="m4">
+                    {<li className="m4">
                         <Link href="/contact" className={`flex items-center gap-2 link ${active === "contact" && "active-link"}`}>
                             <i className="bi bi-person-lines-fill"></i>
                             Contacts
                         </Link>
-                    </li>
-                    {user && user.user_type === "admin" && <li className="ml-0" >
+                    </li>}
+                    {user && user.user_type === "admin" && <li className="m4" >
                         <Link href="/contact" className={`flex items-center gap-2 link ${active === "dashboard" && "active-link"}`}>
-                            <i className="bi bi-person-lines-fill"></i>
+                            <i className="bi bi-person-workspace"></i>
                             Dashboard
                         </Link>
                     </li>}
@@ -134,15 +134,15 @@ const Headers = ({ active }: any) => {
                         About
                     </Link>
                 </li>
-                <li>
+                {<li>
                     <Link href="/contact" className={`flex items-center gap-2 link ${active === "contact" && "active-link"}`}>
                         <i className="bi bi-person-lines-fill"></i>
                         Contacts
                     </Link>
-                </li>
-                {user && user.user_type === "admin" && <li className="m4">
+                </li>}
+                {user && user.user_type === "admin" && <li>
                         <Link href="/contact" className={`flex items-center gap-2 link ${active === "dashboard" && "active-link"}`}>
-                            <i className="bi bi-person-lines-fill"></i>
+                        <i className="bi bi-person-workspace"></i>
                             Dashboard
                         </Link>
                     </li>}
