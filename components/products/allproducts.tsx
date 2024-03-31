@@ -37,7 +37,7 @@ const AllproductsComponents = () => {
     useEffect(() => {
         dispatch(getAllCategory());
         dispatch(getAllProduct(pageLimit));
-    }, []);
+    }, [dispatch, pageLimit]);
 
     useEffect(() => {
         allCategory.length > 0 && setCategories(() => {

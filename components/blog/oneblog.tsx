@@ -7,15 +7,18 @@ import Image from 'next/image';
 import { Background2 } from '@/assets/images';
 import { Spin } from 'antd';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const Oneblog = ({ id }: any) => {
+const Oneblog = () => {
+    const router = useRouter();
     const dispatch: AppDispatch = useAppDispatch();
     const { loading: blogLoading, currentBlog } = useAppSelector(state => state.blog);
     const textDate = new Date().toLocaleString();
 
     useEffect(() => {
+        const id = Number(router.query.id);
         dispatch(getOneBlog(id));
-    }, []);
+    }, [router, dispatch]);
 
   return (
     <div className="h-screen overflow-y-scroll" style={{ background: `#fff center center/cover no-repeat`}}>

@@ -6,17 +6,17 @@ import { AppDispatch } from '@/lib/store';
 import { Spin, Carousel, Button } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const SingleProductComponents = ({ id }:any ) => {
+const SingleProductComponents = () => {
+    const router = useRouter();
     const dispatch: AppDispatch = useAppDispatch();
     const { loading, currentProduct } = useAppSelector(state => state.product);
 
     useEffect(() => {
-        // console.log("hl", id);
-        id && dispatch(getSingleProduct(id))
-    }, [id, dispatch]);
-
-    console.log("lo", currentProduct);
+        const id = Number(router.query.id);
+        dispatch(getSingleProduct(id))
+    }, [dispatch, router]);
     
     const style = {
         height: "fit-content",

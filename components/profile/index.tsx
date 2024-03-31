@@ -12,7 +12,7 @@ const ProfileComponent = () => {
 
   useEffect(() => {
     if(!isAuthenticated) router.push("/auth/login");
-  }, []);
+  }, [router, isAuthenticated]);
   
   return (
     <div className="h-screen overflow-y-scroll" style={{ background: `#fff center center/cover no-repeat`}}>
