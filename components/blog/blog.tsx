@@ -24,7 +24,7 @@ const BlogComponent = () => {
 
   useEffect(() => {
     dispatch(getAllBlogs());
-  },[]);
+  },[dispatch]);
 
   const handlePageChange = (pagesize: number, pagenumber: number) => {
     console.log(pagesize, pagenumber);

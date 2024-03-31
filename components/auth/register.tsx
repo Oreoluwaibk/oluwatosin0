@@ -50,7 +50,7 @@ const Register = () => {
 
   useEffect(() => {
     if(isAuthenticated) router.push("/profile");
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     if(error) {
@@ -220,7 +220,7 @@ const Register = () => {
 
             <p className="text-right">Already registered? 
               <Link 
-                href="/auth/login" 
+                href={"/auth/login"}
                 className="transition-opacity duration-[1s] hover:opacity-50 text-code-p"
               >
                 Login

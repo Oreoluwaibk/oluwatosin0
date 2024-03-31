@@ -71,8 +71,8 @@ const ResetPassword = () => {
           </Form>
 
           <div className="flex items-center justify-between text-black">
-            <Link href="/auth/forgotpassword" className="text-left transition-opacity duration-[1s] hover:opacity-50 text-code-p">Forgot password</Link>
-            <p className="text-right">Dont't have an account? <Link href="/auth/register" className="transition-opacity duration-[1s] hover:opacity-50 text-code-p">Register</Link></p>
+            <Link href={"/auth/forgotpassword"} className="text-left transition-opacity duration-[1s] hover:opacity-50 text-code-p">Forgot password</Link>
+            <p className="text-right">Dont't have an account? <Link href={"/auth/register"} className="transition-opacity duration-[1s] hover:opacity-50 text-code-p">Register</Link></p>
           </div>
         </div>
         <Footer />
