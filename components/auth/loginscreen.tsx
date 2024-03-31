@@ -72,14 +72,14 @@ const Login = () => {
           </Form>
           <div className="flex items-center justify-between text-black">
             <Link 
-              href={`/auth/forgotpassword`} 
+              href="/auth/forgotpassword"
               className="text-left transition-opacity duration-[1s] hover:opacity-50 text-code-p"
             >
               Forgot password
             </Link>
-            <div className="text-right">Dont't have an account? 
+            <div className="text-right">Don&#39;t have an account? 
               <Link 
-                href={`/auth/register`} 
+                href="/auth/register"
                 className="transition-opacity duration-[1s] hover:opacity-50 text-code-p"
               >Register
               </Link>
